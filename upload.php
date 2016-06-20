@@ -88,9 +88,10 @@ if('POST' === $_SERVER['REQUEST_METHOD']) {
 <?php
 $target_dir = "uploads/";
 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
+$mesh_file = "meshes/test_mesh.json";
 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    exec("./stl-parse " . $target_file, $output);
+    exec("./json-mesh " . $target_file . " /meshes/test_mesh.json");
     echo "Selected new STL model";
     /* foreach ($output as $k => $v) */
     /*     echo $v . "<br>"; */
@@ -105,11 +106,12 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 <script src="js/three.js"> </script>
 <script src="js/render_mesh.js"> </script>
 <script>
-    //var mesh = ""
     var mesh = httpGet("/meshes/test_mesh.json");
     var m = build_mesh(mesh);
+
     scene.add( m );
-    camera.position.z = 5;
+    camera.position.x = 5;
+    camera.position.z = 10;
     render(scene, camera, renderer);
 
 </script>
