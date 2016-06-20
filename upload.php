@@ -91,7 +91,7 @@ $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
 $mesh_file = "meshes/test_mesh.json";
 
 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-    exec("./json-mesh " . $target_file . " /meshes/test_mesh.json");
+    exec("./json-mesh " . $target_file . " meshes/test_mesh.json");
     echo "Selected new STL model";
     /* foreach ($output as $k => $v) */
     /*     echo $v . "<br>"; */
