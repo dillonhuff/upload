@@ -101,9 +101,16 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 </div>
 
 <div id="render">
+
 <script src="js/three.js"> </script>
 <script src="js/render_mesh.js"> </script>
-<script> render_json_mesh("hello"); </script>
+<script>
+    var cube = build_mesh();
+    scene.add( cube );
+    camera.position.z = 5;
+    render(scene, camera, renderer);
+</script>
+
 </div>
 
 </body>
