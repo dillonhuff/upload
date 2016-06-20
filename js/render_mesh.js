@@ -2,7 +2,7 @@ var scene = new THREE.Scene();
 var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
 
 var renderer = new THREE.WebGLRenderer();
-renderer.setClearColor( 0x000000 );
+renderer.setClearColor( 0xffffff );
 
 renderer.setSize( window.innerWidth, window.innerHeight );
 document.body.appendChild( renderer.domElement );
@@ -44,7 +44,8 @@ var build_mesh = function(json_mesh) {
     geometry.vertices = m.pts;
     geometry.faces = m.faces;
 
-    var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+    var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 0x0033ff, specular: 0x555555, shininess: 30 } ); //new THREE.MeshPhongMaterial({ wireframe : false }); //new THREE.MeshLambertMaterial({ color : 'red' });
+//						   side : THREE.FrontSide}); //new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
     var mesh = new THREE.Mesh( geometry, material );
 
     return mesh
