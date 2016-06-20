@@ -17,18 +17,6 @@
     <div id="data_input">
 
       <?php
-	 $tools = array();
-	 if('POST' === $_SERVER['REQUEST_METHOD']) {
-	 if( ! empty($_POST['tool'])) {
-         $tools[] = $_POST['tool'];
-	 }
-	 if(isset($_POST['tools']) && is_array($_POST['tools'])) {
-         foreach($_POST['tools'] as $tool) {
-         $tools[] = $tool;
-         }
-	 }
-	 }
-
 	 $base_plates = array();
 	 if('POST' === $_SERVER['REQUEST_METHOD']) {
 	 if( ! empty($_POST['base_plate'])) {
@@ -41,25 +29,9 @@
 	 }
 	 }
 
-	 ?>      
+	 ?>
 
-      <?php if($tools): ?>
-      <ul>
-	<?php foreach($tools as $tool): ?>
-	<li><?php echo $tool; ?></li>
-	<?php endforeach; ?>
-      </ul>
-      <?php endif; ?>
-
-      <form method="post">
-	<input type="text" name="tool" />
-	<input type="submit" value="Add Tool" />
-	<?php if($tools): ?>
-	<?php foreach($tools as $tool): ?>
-	<input type="hidden" name="tools[]" value="<?php echo $tool; ?>" />
-	<?php endforeach; ?>
-	<?php endif; ?>
-      </form>
+      <iframe src="tools_edit.php" style="width=30%, height=30%"> </iframe>
 
       <?php if($base_plates): ?>
       <ul>
@@ -79,26 +51,6 @@
 	<?php endif; ?>
       </form>
       
-      <form action="upload.php" method="post" enctype="multipart/form-data">
-	Select STL file to upload:
-	<input type="file" name="fileToUpload" id="fileToUpload">
-	<input type="submit" value="Upload" name="submit">
-      </form>
-
-      <?php
-	 $target_dir = "uploads/";
-	 $target_file = $target_dir . basename($_FILES["fileToUpload"]["name"]);
-	 $mesh_file = "meshes/test_mesh.json";
-
-	 if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
-	 exec("./json-mesh " . $target_file . " meshes/test_mesh.json");
-	 echo "Selected new STL model";
-	 /* foreach ($output as $k => $v) */
-      /*     echo $v . "<br>"; */
-      }
-
-      ?>
-
     </div>
 
     <div id="render">
