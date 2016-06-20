@@ -105,22 +105,13 @@ if (move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $target_file)) {
 <script src="js/three.js"> </script>
 <script src="js/render_mesh.js"> </script>
 <script>
-    var mesh = "{\"pts\" : [[-2.7, -2, 0], [2, -2, 0], [0, 0, 0]], \"faces\" : [[0, 1, 2]]}";
-
-    /* var mesh = {"pts" : [new THREE.Vector3(-.20, .20, 0), */
-    /*     new THREE.Vector3(-.20, -.20, 0), */
-    /*     new THREE.Vector3(.20, -.20, 0)], */
-    /*             "faces" : [new THREE.Face3(0, 1, 2)]}; */
-    
-    
-//renderResponse(ms) {
+    //var mesh = ""
+    var mesh = httpGet("/meshes/test_mesh.json");
     var m = build_mesh(mesh);
     scene.add( m );
     camera.position.z = 5;
     render(scene, camera, renderer);
-//    }
 
-//renderResponse(mesh);
 </script>
 
 </div>

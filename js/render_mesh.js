@@ -22,32 +22,29 @@ var parse_faces = function(jfaces) {
     return ptArray;
 };
 
+var httpGet = function(theUrl) {
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", theUrl, false); // false for synchronous request
+    xmlHttp.send(null);
+    return xmlHttp.responseText;
+}
+
 var build_three_mesh = function(json_mesh) {
-    //alert(json_mesh);
     var jm = JSON.parse(json_mesh);
-//    alert(jm.pts);
     var pts = parse_pts(jm.pts);
-//    alert(pts);
     var faces = parse_faces(jm.faces);
-//    alert(faces);
     return {"pts" : pts, "faces" : faces};
 }
 
 var build_mesh = function(json_mesh) {
-//    alert(json_mesh);
     var m = build_three_mesh(json_mesh);
-    alert(m);
     var geometry = new THREE.Geometry();
     geometry.vertices = m.pts;
     geometry.faces = m.faces;
 
-    // geometry.vertices.push(new THREE.Vector3(-.20, .20, 0));
-    // geometry.vertices.push(new THREE.Vector3(-.20, -.20, 0));
-    // geometry.vertices.push(new THREE.Vector3(.20, -.20, 0));
-
-    // geometry.faces.push(new THREE.Face3(0, 1, 2));
     var material = new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
     var mesh = new THREE.Mesh( geometry, material );
+
     return mesh
 };
 
