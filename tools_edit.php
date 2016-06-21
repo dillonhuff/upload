@@ -107,44 +107,11 @@
 
     <div id="render">
 
-      <script src="js/three.js"> </script>
+      <script src="js/three.min.js"> </script>
+      <script src="js/OrbitControls.js"> </script>
+      <script src="js/build_mesh.js"> </script>
       <script src="js/render_mesh.js"> </script>
-      <script>
-<!-- 	var mesh = httpGet("/meshes/test_mesh.json"); -->
-<!-- 	var m = build_mesh(mesh); -->
-<!-- 		scene.add( m ); -->
-
-<!-- 	<\!-- var light = new THREE.DirectionalLight( 0xffffff ); -\-> -->
-<!-- 	<\!-- light.position.set( 1, 1, 1 ); -\-> -->
-<!-- 	<\!-- scene.add( light ); -\-> -->
-
-<!-- 	var pointLight = -->
-<!-- 	new THREE.PointLight(0xFFFFFF); -->
-
-	
-<!-- // set its position -->
-<!-- pointLight.position.x = 10; -->
-<!-- pointLight.position.y = 50; -->
-<!-- pointLight.position.z = 130; -->
-
-<!-- // add to the scene -->
-<!-- scene.add(pointLight); -->
-
-<!-- 	var geometry = new THREE.BoxGeometry( 1, 1, 1 ); -->
-<!-- var material = new THREE.MeshLambertMaterial( { color: 0xaaaaaa } ); -->
-<!-- var cube = new THREE.Mesh( geometry, material ); -->
-<!-- scene.add( cube ); -->
-	
-<!-- 	camera.position.x = 50.0; -->
-<!-- 	camera.position.y = 50.0; -->
-<!-- 	camera.position.z = 50.0 -->
-<!-- 	render(scene, camera, renderer); -->
-
-
-<!-- var geometry = new THREE.BoxGeometry( 1, 1, 1 ); -->
-<!-- var material = new THREE.MeshLambertMaterial( { color: 0xaaaaaa } ); -->
-<!-- var cube = new THREE.Mesh( geometry, material ); -->
-<!-- scene.add( cube ); -->
+      <script> 
 
 var mesh = httpGet("/meshes/test_mesh.json");
 var m = build_mesh(mesh);

@@ -1,12 +1,3 @@
-var scene = new THREE.Scene();
-var camera = new THREE.PerspectiveCamera( 75, window.innerWidth/window.innerHeight, 0.1, 1000 );
-
-var renderer = new THREE.WebGLRenderer();
-renderer.setClearColor( 0xffffff );
-
-renderer.setSize( window.innerWidth, window.innerHeight );
-document.body.appendChild( renderer.domElement );
-
 var parse_pts = function(jpts) {
     var ptArray = [];
     for (var i = 0; i < jpts.length; i++) {
@@ -49,12 +40,3 @@ var build_mesh = function(json_mesh) {
 
     return mesh
 };
-
-var render = function (sc, cam, rr, ctrls) {
-    requestAnimationFrame( render );
-
-    rr.render(sc, cam);
-    ctrls.update();
-};
-
-
