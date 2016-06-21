@@ -8,9 +8,8 @@
 
   <body>
     <?php
-       $mesh_file = "meshes/test_mesh.json";
-
-       exec("./json-plan " . "uploads/ComplexRectanglePart1.stl" . " meshes/final_plan.json");
+       $target_file = "uploads/active_stl.stl";
+       exec("./json-plan " . $target_file . " meshes/final_plan.json");
 
        ?>
 
@@ -42,14 +41,22 @@
 				var step_button = document.createElement("input");
 				step_button.setAttribute("type", "button");
 				step_button.setAttribute("value", ind);
-				step_button.setAttribute("onclick", "scene.remove(meshes[current_mesh]); current_mesh = " + ind + "; scene.add(meshes[current_mesh])");
+				step_button.setAttribute("onclick", "scene.remove(meshes[current_mesh]); current_mesh = " + ind + "; scene.add(meshes[current_mesh]);" +
+				"document.getElementById(\"gcode_text\").value = p.setups[current_mesh].gcode;");
 				document.getElementById("select_buttons").appendChild(step_button);
 				}
 	basic_init();
 	scene.add(meshes[current_mesh]);
 	render();
+				
+	</script>
 
-      </script>
+    </div>
+
+    <div>
+
+      <label for="aboutDescription" id="aboutHeading"> GCODE </label>
+      <textarea rows="15" cols="50" id="gcode_text" style="resize: none;"></textarea>
 
     </div>
 
