@@ -1,5 +1,4 @@
 var parse_pts = function(jpts) {
-    alert(jpts);
     var ptArray = [];
     for (var i = 0; i < jpts.length; i++) {
 	var v = new THREE.Vector3(jpts[i][0], jpts[i][1], jpts[i][2]);
