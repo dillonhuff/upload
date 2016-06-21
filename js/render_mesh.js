@@ -43,10 +43,12 @@ var build_mesh = function(json_mesh) {
     var geometry = new THREE.Geometry();
     geometry.vertices = m.pts;
     geometry.faces = m.faces;
+    geometry.computeFaceNormals();
 
-    var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 0x0033ff, specular: 0x555555, shininess: 30 } ); //new THREE.MeshPhongMaterial({ wireframe : false }); //new THREE.MeshLambertMaterial({ color : 'red' });
-//						   side : THREE.FrontSide}); //new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
-    var mesh = new THREE.Mesh( geometry, material );
+//    var material = new THREE.MeshPhongMaterial( { ambient: 0x050505, color: 0x0033ff, specular: 0x555555, shininess: 30 } ); //new THREE.MeshPhongMaterial({ wireframe : false }); //new THREE.MeshLambertMaterial({ color : 'red' });
+    //						   side : THREE.FrontSide}); //new THREE.MeshBasicMaterial( { color: 0x00ff00 } );
+
+    var mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: 0xaaaaaa }));
 
     return mesh
 };
