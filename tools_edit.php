@@ -113,24 +113,9 @@
       <script src="js/render_mesh.js"> </script>
       <script> 
 
-var mesh = httpGet("/meshes/test_mesh.json");
-var m = build_mesh(mesh);
-scene.add( m );
-
-var pointLight =
-  new THREE.PointLight(0xFFFFFF);
-
-// set its position
-pointLight.position.x = 10;
-pointLight.position.y = 50;
-pointLight.position.z = 130;
-
-// add to the scene
-scene.add(pointLight);
-
-camera.position.z = 12;
-
-render(scene, camera, renderer);
+	var scene, camera, renderer;
+	init();
+	render(scene, camera, renderer);
 
       </script>
 
