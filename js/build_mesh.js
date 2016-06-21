@@ -1,4 +1,5 @@
 var parse_pts = function(jpts) {
+    alert(jpts);
     var ptArray = [];
     for (var i = 0; i < jpts.length; i++) {
 	var v = new THREE.Vector3(jpts[i][0], jpts[i][1], jpts[i][2]);
@@ -23,9 +24,8 @@ var httpGet = function(theUrl) {
 }
 
 var build_three_mesh = function(json_mesh) {
-    var jm = JSON.parse(json_mesh);
-    var pts = parse_pts(jm.pts);
-    var faces = parse_faces(jm.faces);
+    var pts = parse_pts(json_mesh.pts);
+    var faces = parse_faces(json_mesh.faces);
     return {"pts" : pts, "faces" : faces};
 }
 

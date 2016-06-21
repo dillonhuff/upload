@@ -89,8 +89,13 @@
       <input type="submit" value="Upload" name="submit">
     </form>
 
+    
     <form action="tools_edit.php" method="post" name="clearAll">
       <input type="submit" value="Clear All" name="clearAll">
+    </form>
+
+    <form action="show_fab_plan.php" method="post">
+      <input type="submit" value="Create Fabrication Plan" name="submit">
     </form>
 
     <?php
