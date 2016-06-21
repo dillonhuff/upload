@@ -115,7 +115,7 @@
 
 	var scene, camera, renderer;
 	init();
-	render(scene, camera, renderer);
+	render();
 
       </script>
 

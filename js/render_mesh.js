@@ -29,10 +29,10 @@ controls = new THREE.OrbitControls(camera, renderer.domElement);
 
 }
 
-var render = function (sc, cam, rr) {
+var render = function() {
     requestAnimationFrame( render );
 
-    rr.render(sc, cam);
+    renderer.render(scene, camera);
     controls.update();
 };
 
