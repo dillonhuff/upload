@@ -28,14 +28,18 @@ var build_three_mesh = function(json_mesh) {
     return {"pts" : pts, "faces" : faces};
 }
 
-var build_mesh = function(json_mesh) {
+var build_m = function(json_mesh, material) {
     var m = build_three_mesh(json_mesh);
     var geometry = new THREE.Geometry();
     geometry.vertices = m.pts;
     geometry.faces = m.faces;
     geometry.computeFaceNormals();
 
-    var mesh = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: 0xaaaaaa }));
+    var mesh = new THREE.Mesh( geometry, material );
 
     return mesh
 };
+
+function build_mesh(json_mesh) {
+    return build_m(json_mesh, new THREE.MeshPhongMaterial( { color: 0xaaaaaa }));
+}

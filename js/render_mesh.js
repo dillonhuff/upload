@@ -52,7 +52,7 @@ function setup_vice_lists(plan) {
 	var vl = s[i].vice;
 	var lst = [];
 	for (var j = 0; j < vl.length; j++) {
-	    lst.push(build_mesh(vl[j]));
+	    lst.push(build_m(vl[j], new THREE.MeshPhongMaterial(0xFF0000)));
 	}
 	vice_lists.push(lst);
     }
