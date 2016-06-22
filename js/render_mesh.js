@@ -22,6 +22,9 @@ function basic_init() {
     // add to the scene
     scene.add(pointLight);
 
+    // var amb_light = new THREE.AmbientLight( 0xbbbbbb ); // soft white light
+    // scene.add( amb_light );
+
     camera.position.z = 12;
 
     controls = new THREE.OrbitControls(camera, renderer.domElement);
@@ -34,6 +37,26 @@ function init() {
     var mesh = httpGet("/meshes/test_mesh.json");
     var m = build_mesh(mesh);
     scene.add( m );
+}
+
+function add_vice_list(vices) {
+    for (var i = 0; i < vices.length; i++) {
+	scene.add(vices[i]);
+    }
+}
+
+function setup_vice_lists(plan) {
+    var vice_lists = [];
+    var s = plan.setups;
+    for (var i = 0; i < s.length; i++) {
+	var vl = s[i].vice;
+	var lst = [];
+	for (var j = 0; j < vl.length; j++) {
+	    lst.push(build_mesh(vl[j]));
+	}
+	vice_lists.push(lst);
+    }
+    return vice_lists;
 }
 
 function setup_meshes(plan) {
