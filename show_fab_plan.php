@@ -85,6 +85,8 @@
 				  document.getElementById("select_buttons").appendChild(step_button);
 				  }
 				  basic_init();
+				  var edges = new THREE.FaceNormalsHelper( vice_lists[current_mesh][0], 2, 0x00ff00, 1 );
+				  /*scene.add(edges);*/
 				  scene.add(meshes[current_mesh]);
 				  add_vice_list(vice_lists[current_mesh]);
 				  render();

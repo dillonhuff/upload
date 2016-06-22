@@ -33,9 +33,11 @@ function build_m(json_mesh, material) {
     var geometry = new THREE.Geometry();
     geometry.vertices = m.pts;
     geometry.faces = m.faces;
+    
     geometry.computeFaceNormals();
 
     var mesh = new THREE.Mesh( geometry, material );
+    mesh.material.side = THREE.DoubleSide;
 
     return mesh
 };
