@@ -28,7 +28,7 @@ var build_three_mesh = function(json_mesh) {
     return {"pts" : pts, "faces" : faces};
 }
 
-var build_m = function(json_mesh, material) {
+function build_m(json_mesh, material) {
     var m = build_three_mesh(json_mesh);
     var geometry = new THREE.Geometry();
     geometry.vertices = m.pts;
@@ -41,5 +41,9 @@ var build_m = function(json_mesh, material) {
 };
 
 function build_mesh(json_mesh) {
-    return build_m(json_mesh, new THREE.MeshPhongMaterial( { color: 0xaaaaaa }));
+    return build_m(json_mesh,
+		   new THREE.MeshPhongMaterial( {
+		       color: 0xff0000,
+		       wireframe : false
+		   }));
 }

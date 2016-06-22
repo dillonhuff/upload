@@ -45,25 +45,25 @@ function add_vice_list(vices) {
     }
 }
 
-function setup_vice_lists(plan) {
+function setup_vice_lists(plan, mat) {
     var vice_lists = [];
     var s = plan.setups;
     for (var i = 0; i < s.length; i++) {
 	var vl = s[i].vice;
 	var lst = [];
 	for (var j = 0; j < vl.length; j++) {
-	    lst.push(build_m(vl[j], new THREE.MeshPhongMaterial(0xFF0000)));
+	    lst.push(build_m(vl[j], mat));
 	}
 	vice_lists.push(lst);
     }
     return vice_lists;
 }
 
-function setup_meshes(plan) {
+function setup_meshes(plan, mat) {
     var meshes = [];
     var s = plan.setups;
     for (var i = 0; i < s.length; i++) {
-	meshes.push(build_mesh(s[i].partMesh));
+	meshes.push(build_m(s[i].partMesh, mat));
     }
     return meshes;
 }

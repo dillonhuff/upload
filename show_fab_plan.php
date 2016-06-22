@@ -44,8 +44,10 @@
 	<script>
 	  var pl = httpGet("/meshes/final_plan.json");
 	  var p = JSON.parse(pl);
-	  var meshes = setup_meshes(p);
-	  var vice_lists = setup_vice_lists(p);
+	  var vcolor = new THREE.MeshPhongMaterial({ color: 0x00aaff });
+	  var mcolor = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
+	  var meshes = setup_meshes(p, mcolor);
+	  var vice_lists = setup_vice_lists(p, vcolor);
 	  var current_mesh = 0;
 	</script>
 
