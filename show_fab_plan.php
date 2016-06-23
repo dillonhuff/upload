@@ -44,11 +44,12 @@
 	<script>
 	  var pl = httpGet("/meshes/final_plan.json");
 	  var p = JSON.parse(pl);
-	  var vcolor = new THREE.MeshPhongMaterial({ color: 0x00aaff });
-	  var mcolor = new THREE.MeshPhongMaterial({ color: 0xaaaaaa });
+	  var vcolor = new THREE.MeshLambertMaterial( { color: 0xff0000, specular: 0xffffff, shininess: 20, shading: THREE.FlatShading } ); /*new THREE.MeshPhongMaterial({ color: 0x00aaff });*/
+	  var mcolor = new THREE.MeshPhongMaterial( { color: 0xaaaaaa, specular: 0xffffff, shininess: 20, shading: THREE.FlatShading } ); /*new THREE.MeshPhongMaterial({ color: 0xaaaaaa });*/
 	  var meshes = setup_meshes(p, mcolor);
 	  var vice_lists = setup_vice_lists(p, vcolor);
 	  var current_mesh = 0;
+	  
 	</script>
 
 	
@@ -88,6 +89,9 @@
 				  var edges = new THREE.FaceNormalsHelper( vice_lists[current_mesh][0], 2, 0x00ff00, 1 );
 				  /*scene.add(edges);*/
 				  scene.add(meshes[current_mesh]);
+				  var bb = new THREE.Box3()
+				  bb.setFromObject(meshes[current_mesh]);
+				  bb.center(controls.target);
 				  add_vice_list(vice_lists[current_mesh]);
 				  render();
 				  

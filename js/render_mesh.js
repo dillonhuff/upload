@@ -19,8 +19,17 @@ function basic_init() {
     pointLight.position.y = 50;
     pointLight.position.z = 130;
 
+    
+
     // add to the scene
     scene.add(pointLight);
+
+    hemiLight = new THREE.HemisphereLight( 0xffffff, 0xffffff, 0.6 );
+				hemiLight.color.setHSL( 0.6, 1, 0.6 );
+				hemiLight.groundColor.setHSL( 0.095, 1, 0.75 );
+				hemiLight.position.set( 0, 500, 0 );
+    scene.add( hemiLight );
+
 
     // var amb_light = new THREE.AmbientLight( 0xbbbbbb ); // soft white light
     // scene.add( amb_light );
