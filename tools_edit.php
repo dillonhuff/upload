@@ -19,12 +19,19 @@
    file_put_contents("tool_table.txt", "");
    file_put_contents("base_plate_table.txt", "");
    }
+}
+   $inputs_json_str = file_get_contents("setup_info.json");
+   $json = json_decode($inputs_json_str);
+   $tool_str = "";
+   foreach($json->tools as $tool) {
+$tool_str = $tool_str . " [" . $tool->tool_diameter . " " . $tool->tool_length . "], ";
 
-   $tool_str = file_get_contents("tool_table.txt");
-   $base_str = file_get_contents("base_plate_table.txt");
-   $vice_str = file_get_contents("vice.txt");
-
-   }
+   };
+   $base_str = "";
+foreach($json->fixtures->base_plates as $base_plate) {
+$base_str = $base_str . " " . $base_plate . ", ";
+}
+   $vice_str = "Add vice json"; 
    
    ?>
 
@@ -110,22 +117,6 @@
        }
 
        ?>
-
-    <div id="render">
-
-      <script src="js/three.min.js"> </script>
-      <script src="js/OrbitControls.js"> </script>
-      <script src="js/build_mesh.js"> </script>
-      <script src="js/render_mesh.js"> </script>
-      <script> 
-
-	var scene, camera, renderer;
-	init();
-	render();
-
-      </script>
-
-    </div>
 
   </body>
 

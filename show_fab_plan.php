@@ -32,7 +32,8 @@
       <div id="left_div">
 	<?php
 	   $target_file = "uploads/active_stl.stl";
-	   exec("./json-plan " . $target_file . " meshes/final_plan.json");
+	   $info_file = "setup_info.json";
+	   exec("./json-plan " . $target_file . " " . $info_file . " meshes/final_plan.json");
 
 	   ?>
 
@@ -89,9 +90,6 @@
 				  var edges = new THREE.FaceNormalsHelper( vice_lists[current_mesh][0], 2, 0x00ff00, 1 );
 				  /*scene.add(edges);*/
 				  scene.add(meshes[current_mesh]);
-				  var bb = new THREE.Box3()
-				  bb.setFromObject(meshes[current_mesh]);
-				  bb.center(controls.target);
 				  add_vice_list(vice_lists[current_mesh]);
 				  render();
 				  
