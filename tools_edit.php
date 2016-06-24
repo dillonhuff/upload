@@ -1,39 +1,30 @@
 <!DOCTYPE html>
 
 <?php
-   if ('POST' === $_SERVER['REQUEST_METHOD']) {
-   if ($_POST['tool']) {
-   file_put_contents("tool_table.txt", $_POST['tool'] . PHP_EOL, FILE_APPEND);
-   }
-   if ($_POST['basePlate']) {
-   file_put_contents("base_plate_table.txt", $_POST['basePlate'] . PHP_EOL, FILE_APPEND);
-   }
 
-   if ($_POST['vice']) {
-   file_put_contents("vice.txt", "");
-   file_put_contents("vice.txt", $_POST['vice'] . PHP_EOL, FILE_APPEND);
-   }
-
-   if ($_POST['clearAll']) {
-   file_put_contents("vice.txt", "");
-   file_put_contents("tool_table.txt", "");
-   file_put_contents("base_plate_table.txt", "");
-   }
-}
    $inputs_json_str = file_get_contents("setup_info.json");
    $json = json_decode($inputs_json_str);
-   $tool_str = "";
-   foreach($json->tools as $tool) {
-$tool_str = $tool_str . " [" . $tool->tool_diameter . " " . $tool->tool_length . "], ";
 
-   };
-   $base_str = "";
-foreach($json->fixtures->base_plates as $base_plate) {
-$base_str = $base_str . " " . $base_plate . ", ";
+if ($_POST['basePlate']) {
+$json->fixtures->base_plates[] = $_POST['basePlate'];
 }
-   $vice_str = "Add vice json"; 
-   
-   ?>
+
+if ($_POST['toolDiameter']) {
+$new_tool = array("tool_diameter"=>$_POST['toolDiameter'], "tool_length"=>$_POST['toolLength']);
+$json->tools[] = $new_tool;
+}
+
+file_put_contents("setup_info.json", json_encode($json));
+$inputs_json_str = file_get_contents("setup_info.json");
+$json = json_decode($inputs_json_str);
+
+$tool_list = $json->tools;
+$fixtures = $json->fixtures;
+$base_plates = $fixtures->base_plates;
+$vice = $fixtures->vice;
+$workpiece = $json->workpiece;
+
+?>
 
 
 <html>
@@ -44,45 +35,73 @@ $base_str = $base_str . " " . $base_plate . ", ";
 
   <body>
 
-    <?php
-       
-       if ($tool_str) {
-       echo $tool_str;
-       } else {
-       echo "No tools yet";
-       }
-
+    <ul>
+      <?php
+	 foreach($tool_list as $tool) {
+	 echo "<ul>";
+	 echo $tool->tool_diameter . " " . $tool->tool_length;
+      echo "</ul>";
+    }
        ?>
+    </ul>
 
-    <form method="post">
-      <input type="text" name="tool" />
+    <form action="tools_edit.php" method="post">
+      <input type="text" name="toolDiameter" />
+      <input type="text" name="toolLength" />
       <input type="submit" value="Add Tool" />
     </form>
 
-    <?php
-       
-       if ($base_str) {
-       echo $base_str;
-       } else {
-       echo "No base plates yet";
-       }
-
+    <ul>
+      <?php
+	 foreach($base_plates as $plate) {
+	 echo "<ul>";
+	 echo $plate;
+      echo "</ul>";
+    }
        ?>
-
-    <form method="post">
+    </ul>
+    
+    <form action="tools_edit.php" method="post">
       <input type="text" name="basePlate" />
-      <input type="submit" value="Add Base Plate" />
+      <input type="submit" value="Add Base Plate" name="base_plate" />
     </form>
 
-    <?php
-       
-       if ($vice_str) {
-       echo $vice_str;
-       } else {
-       echo "No vice yet";
-       }
+    <ul>
 
-       ?>
+      <?php
+	 
+      echo "<ul>";
+	echo "X length: " . $vice->vice_x_length;
+	echo "</ul>";
+
+      echo "<ul>";
+	echo "Y length: " . $vice->vice_y_length;
+	echo "</ul>";
+
+      echo "<ul>";
+	echo "Base height: " . $vice->vice_base_height;
+	echo "</ul>";
+
+    echo "<ul>";
+      echo "Top height: " . $vice->vice_top_height;
+      echo "</ul>";
+
+    echo "<ul>";
+      echo "Clamp width: " . $vice->vice_clamp_width;
+      echo "</ul>";
+
+    echo "<ul>";
+      echo "Max jaw width: " . $vice->vice_max_jaw_width;
+      echo "</ul>";
+
+    echo "<ul>";
+      if ($vice->vice_protective_base_plate_height > 0.0) {
+      echo "Base plate height: " . $vice->vice_protective_base_plate_height;
+      }
+      echo "</ul>";
+    
+      ?>
+    </ul>
 
     <form method="post">
       <input type="text" name="vice" />
